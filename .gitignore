@@ -1,0 +1,6 @@
+.env
+venv
+python-vision
+*.jpg
+*.jpeg
+markmed.txt

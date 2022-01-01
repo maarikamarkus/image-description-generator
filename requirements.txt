@@ -1,0 +1,5 @@
+google-cloud-vision==2.6.3
+openai==0.11.5
+Pillow==8.4.0
+requests==2.26.0
+python-dotenv==0.19.2
