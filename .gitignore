@@ -4,3 +4,6 @@ python-vision
 *.jpg
 *.jpeg
 markmed.txt
+__pycache__
+imgs
+key.json
