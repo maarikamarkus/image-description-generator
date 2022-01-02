@@ -1,20 +1,27 @@
 import io
 import json
 import os
+import base64
 
 import openai
 import requests
 from dotenv import load_dotenv
 from google.cloud import vision
 from PIL import ExifTags, Image
+from google.oauth2 import service_account
 
 load_dotenv()
 
 GOOGLE_API_KEY = os.environ.get('google_api_key')
 OPENAI_API_KEY = os.environ.get('openai_api_key')
+GOOGLE_CREDENTIALS = os.environ.get('google_credentials')
+
+credentials = service_account.Credentials.from_service_account_info(
+  json.loads(base64.b64decode(GOOGLE_CREDENTIALS))
+)
 
 def get_img_keywords(file_name):
-  client = vision.ImageAnnotatorClient()
+  client = vision.ImageAnnotatorClient(credentials=credentials)
   file_name = os.path.abspath(file_name)
 
   with io.open(file_name, 'rb') as image_file:
@@ -110,3 +117,4 @@ def get_img_desc(img_path):
 #get_img_desc()
 
 #print(get_img_keywords('C:\\Users\\maarikam\\kool\\tehisintellekt\\kodu7\\maarika-kopu-tuletorn.jpeg'))
+#print(credentials)
