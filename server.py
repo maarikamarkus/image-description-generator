@@ -23,7 +23,7 @@ def index():
   if request.method == 'POST':
     if 'filename' not in request.files:
       return 'No file part'
-      
+
     file = request.files['filename']
     if file.filename == '':
       return 'No selected file'
@@ -47,7 +47,7 @@ def index():
       return f'''
           <img src="data:image/jpeg;base64, {decoded}" width=500 style="display: block">
           <p style="width: 500px">{desc}</p>
-        
+          <a href="/">Wanna try again? ✌️</a>
         '''
 
     finally:
