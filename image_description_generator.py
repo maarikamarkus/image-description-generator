@@ -35,7 +35,7 @@ def get_img_keywords(file_name):
   
   return labels
 
-def get_img_location(path):
+def get_img_gps_location(path):
   img = Image.open(path)
   exif_data = img._getexif()
 
@@ -68,32 +68,22 @@ def to_decimal(x):
   return float(deg + mins/60 + secs/60/60)
 
 def get_address(path):
-  lat, lng = get_img_location(path)
-  if lat is None:
+  lat, lng = get_img_gps_location(path)
+  if lat is None or lng is None:
     return None
 
   r = requests.get(f'https://maps.googleapis.com/maps/api/geocode/json?latlng={lat},{lng}&key={GOOGLE_API_KEY}').json()
-  #with open('data_2.json', 'w') as f:
-  #  f.write(json.dumps(r))
-  #with open('data_2.json') as f:
-  #  r = json.loads(f.read())
 
   if r['status'] != "OK":
     return None
 
+  # Võtame geocode infost riigi ja linna või asula nime.
   return [comp['long_name'] for comp in r['results'][0]['address_components'] \
     if 'country' in comp['types'] or 'locality' in comp['types']]
-  #print(json.dumps(r, indent=2))
 
 def get_img_desc(img_path):
   img_keywords = get_img_keywords(img_path)
   loc_keywords = get_address(img_path)
-
-  print("Img keywords:", img_keywords)
-  print("Loc keywords:", loc_keywords)
-
-  #loc_keywords = ['Kõpu', 'Estonia']
-  #img_keywords = ['sunny', 'lighthouse', 'tree']
   
   openai.api_key = OPENAI_API_KEY
 
@@ -109,12 +99,4 @@ def get_img_desc(img_path):
   )
 
   desc = response['choices'][0]['text'].strip()
-  print(desc)
   return desc
-
-#get_address()
-#print(get_img_location())
-#get_img_desc()
-
-#print(get_img_keywords('C:\\Users\\maarikam\\kool\\tehisintellekt\\kodu7\\maarika-kopu-tuletorn.jpeg'))
-#print(credentials)
