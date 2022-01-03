@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <title>Image Description Generator</title>
+
+    <style>
+      * {
+        margin-top: 10px;
+      }
+
+      body {
+        margin-left: 20px;
+      }
+        img {
+        display: block;
+        width: 50%;
+      }
+
+      p {
+        width: 50%;
+      }
+
+    </style>
+  </head>
+  <body>
+    <h1>Image description generator</h1>
+  
+    <img src="data:image/jpeg;base64, {{ decoded }}">
+    
+    <p>{{ desc }}</p>
+    
+    <a href="/">Want to try again? 🤖</a>
+
+  </body>
+</html>

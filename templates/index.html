@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <title>Image Description Generator</title>
+  
+  <style>
+    * {
+      margin-top: 10px;
+    }
+
+    body {
+      margin-left: 20px;
+    }
+
+    p {
+      width: 50%;
+    }
+  </style>
+</head>
+<body>
+  <h1>Image description generator</h1>
+
+  <p>
+    This application uses Google Cloud Vision to generate keywords from your image.
+    These keywords are then fed to OpenAI-s GPT-3 engine to generate a description. 
+    If your image has EXIF data and it contains GPS information, then the information is reverse geocoded
+    using Google Geocoding API. 
+    Retrieved location details (city/town and country) is given in the prompt to 
+    the GPT-3 engine to generate a descritpion.
+  </p>
+
+  <form enctype = "multipart/form-data" action = "/" method = "post">
+
+    <p>Upload File: <input type = "file" name = "filename" /></p>
+    
+    <p><input type = "submit" value = "Get your AI generated description 🤖" /></p>
+ 
+  </form>
+</body>
+</html>
