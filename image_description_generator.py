@@ -77,7 +77,7 @@ def get_address(path):
   if r['status'] != "OK":
     return None
 
-  # Võtame geocode infost riigi ja linna või asula nime.
+  # Võtame geocode infost riigi ja asula nime.
   return [comp['long_name'] for comp in r['results'][0]['address_components'] \
     if 'country' in comp['types'] or 'locality' in comp['types']]
 

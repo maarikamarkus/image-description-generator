@@ -3,7 +3,7 @@
 Simple Python/Flask web application to generate a description for your uploaded image.
 
 At first Google Cloud Vision is used to generate keywords from your image.
-These keywords are then fed to OpenAI-s GPT-3 engine to generate a description. 
+These keywords are then fed to OpenAI's GPT-3 engine to generate a description. 
 If your image has EXIF data and it contains GPS information, then the information is reverse geocoded
 using Google Geocoding API. Retrieved location details (city/town and country) is given in the prompt to the
 GPT-3 engine to generate descritpion.
